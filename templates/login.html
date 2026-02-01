@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Chat App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h1>Welcome Back</h1>
+        <p class="subtitle">Join the conversation</p>
+        
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Enter Username" required autocomplete="off">
+            </div>
+            <button type="submit" class="btn-primary">Login</button>
+        </form>
+
+        <div class="synthetic-users">
+            <p>Or login as:</p>
+            <div class="user-pills">
+                {% for user in available_users %}
+                    <form action="/login" method="POST" style="display:inline;">
+                        <input type="hidden" name="username" value="{{ user }}">
+                        <button type="submit" class="user-pill">{{ user }}</button>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
